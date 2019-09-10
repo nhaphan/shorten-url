@@ -2,7 +2,7 @@ package com.github.url.urlshortener.util;
 
 import java.util.concurrent.ThreadLocalRandom;
 
-public class KeyRandom {
+public class HashGenerate {
     public static String keyRandom() {
         String characters = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
         StringBuilder strRandom = new StringBuilder();

@@ -3,7 +3,7 @@ package com.github.url.urlshortener.controller;
 
 import com.github.url.urlshortener.entity.Url;
 import com.github.url.urlshortener.service.UrlService;
-import com.github.url.urlshortener.util.KeyRandom;
+import com.github.url.urlshortener.util.HashGenerate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 
@@ -34,7 +34,8 @@ public class BaseController {
         if(!url.getOriginalUrl().contains("http://") && !url.getOriginalUrl().contains("https://")) {
             url.setOriginalUrl("http://"+url.getOriginalUrl());
         }
-        url.setHash(KeyRandom.keyRandom());
+
+        url.setHash(HashGenerate.keyRandom());
         return ResponseEntity.ok(urlService.create(url));
     }
 
