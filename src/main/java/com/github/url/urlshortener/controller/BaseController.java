@@ -12,11 +12,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 
 import javax.validation.Valid;
-
+import java.util.List;
 
 
 @RestController
 @RequestMapping
+@CrossOrigin(origins = "http://localhost:4200")
 public class BaseController {
 
     @Autowired
@@ -29,7 +30,7 @@ public class BaseController {
     }
 
 
-    @PostMapping("/api")
+    @PostMapping("/urls")
     public ResponseEntity create(@Valid @RequestBody Url url) {
         if(!url.getOriginalUrl().contains("http://") && !url.getOriginalUrl().contains("https://")) {
             url.setOriginalUrl("http://"+url.getOriginalUrl());
@@ -40,6 +41,10 @@ public class BaseController {
     }
 
 
+    @GetMapping("/urls")
+    public ResponseEntity<List<Url>> findAll() {
+        return ResponseEntity.ok( urlService.findAll());
+    }
 
 
 }

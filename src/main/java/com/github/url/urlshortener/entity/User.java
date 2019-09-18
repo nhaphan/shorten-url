@@ -1,10 +1,9 @@
 package com.github.url.urlshortener.entity;
 
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import org.hibernate.annotations.CreationTimestamp;
+
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
@@ -13,6 +12,7 @@ public class User {
 
     @Id
     @Column(name = "user_id")
+    @GeneratedValue
     private int id;
 
     @Column(name = "name")
@@ -25,17 +25,28 @@ public class User {
     private String password;
 
     @Column(name="creation_date")
+    @CreationTimestamp
     private Date creationDate;
 
 
     public User(){};
 
-    public User(int id, String name, String email, String password, Date creationDate) {
-        this.id = id;
+    public User(String name, String email, String password) {
         this.name = name;
         this.email = email;
         this.password = password;
-        this.creationDate = creationDate;
+    }
+
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", creationDate=" + creationDate +
+                '}';
     }
 
     public int getId() {

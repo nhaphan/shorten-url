@@ -1,0 +1,20 @@
+<h2>My URL</h2>
+
+<div>
+  <label>
+    <input #urlName placeholder="Shorten your link" />
+  </label>
+  <button (click)="add(urlName.value); urlName.value=''">
+    Shorten
+  </button>
+
+  <ul class="urls">
+    <li *ngFor="let url of urls">
+       <a href="http://localhost:8080/{{url.hash}}">
+         <span class="badge">http://localhost:8080/{{url.hash}}</span> <span class="badge"> {{ (url.originalUrl.length>6)? (url.originalUrl | slice:0:40)+'...':(url.originalUrl) }}</span>
+
+       </a>
+      <button (click)="copyMessage('http://localhost:8080/'.concat(url.hash))" value="click to copy">Copy</button>
+    </li>
+  </ul>
+</div>
